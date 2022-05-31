@@ -61,7 +61,7 @@ public class EscapeRoom
     Scanner in = new Scanner(System.in);
     String[] validCommands = { "right", "left", "up", "down", "r", "l", "u", "d",
     "jump", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd",
-    "pickup", "p", "quit", "q", "replay", "help", "?"};
+    "pickup", "p", "quit", "q", "replay", "help", "?", "trapcheck", "tc"};
   
     // set up game
     boolean play = true;
@@ -71,18 +71,26 @@ public class EscapeRoom
       System.out.println("What would you like to do?");
       currentCommand = UserInput.getValidInput(validCommands);
       if(currentCommand.equals("right") || currentCommand.equals("r")){
-        game.movePlayer(60, 0);
+        score += game.movePlayer(60, 0);
       }else if(currentCommand.equals("left") || currentCommand.equals("l")){
-        game.movePlayer(-60, 0);
+        score += game.movePlayer(-60, 0);
       }else if(currentCommand.equals("up") || currentCommand.equals("u")){
-        game.movePlayer(0, 60);
-      }else if(currentCommand.equals("right") || currentCommand.equals("r")){
-        game.movePlayer(0, -60);
-      }else if(currentCommand.equals("jump") || currentCommand.equals("r")){
-        game.movePlayer(60, 0);
+        score += game.movePlayer(0, 60);
+      }else if(currentCommand.equals("down") || currentCommand.equals("d")){
+        score += game.movePlayer(0, -60);
+      }else if(currentCommand.equals("jump") || currentCommand.equals("jr")){
+        score += game.movePlayer(120, 0);
+      }else if(currentCommand.equals("jumpleft") || currentCommand.equals("jl")){
+        score += game.movePlayer(-120, 0);
+      }else if(currentCommand.equals("jumpup") || currentCommand.equals("ju")){
+        score += game.movePlayer(0, 120);
+      }else if(currentCommand.equals("jumpdown") || currentCommand.equals("jd")){
+        score += game.movePlayer(0, -120);
+      }else if(currentCommand.equals("pickup") || currentCommand.equals("p")){
+        score += game.pickupPrize();
+      }else if(currentCommand.equals("trapcheck") || currentCommand.equals("tc")){
+        game.isTrap(newx, newy)
       }
-      
-    }
 
   
 
@@ -90,6 +98,7 @@ public class EscapeRoom
 
     System.out.println("score=" + score);
     System.out.println("steps=" + game.getSteps());
+    }
   }
 }
 
