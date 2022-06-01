@@ -61,7 +61,7 @@ public class EscapeRoom
     Scanner in = new Scanner(System.in);
     String[] validCommands = { "right", "left", "up", "down", "r", "l", "u", "d",
     "jump", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd",
-    "pickup", "p", "quit", "q", "replay", "help", "?", "trapcheck", "tc"};
+    "pickup", "p", "quit", "q", "replay", "help", "?", "springtrap", "st"};
   
     // set up game
     boolean play = true;
@@ -71,25 +71,34 @@ public class EscapeRoom
       System.out.println("What would you like to do?");
       currentCommand = UserInput.getValidInput(validCommands);
       if(currentCommand.equals("right") || currentCommand.equals("r")){
-        score += game.movePlayer(60, 0);
+        score += game.movePlayer(m, 0);
       }else if(currentCommand.equals("left") || currentCommand.equals("l")){
-        score += game.movePlayer(-60, 0);
+        score += game.movePlayer(-m, 0);
       }else if(currentCommand.equals("up") || currentCommand.equals("u")){
-        score += game.movePlayer(0, 60);
+        score += game.movePlayer(0, m);
       }else if(currentCommand.equals("down") || currentCommand.equals("d")){
-        score += game.movePlayer(0, -60);
+        score += game.movePlayer(0, -m);
       }else if(currentCommand.equals("jump") || currentCommand.equals("jr")){
-        score += game.movePlayer(120, 0);
+        score += game.movePlayer(2*m, 0);
       }else if(currentCommand.equals("jumpleft") || currentCommand.equals("jl")){
-        score += game.movePlayer(-120, 0);
+        score += game.movePlayer(-2*m, 0);
       }else if(currentCommand.equals("jumpup") || currentCommand.equals("ju")){
-        score += game.movePlayer(0, 120);
+        score += game.movePlayer(0, 2*m);
       }else if(currentCommand.equals("jumpdown") || currentCommand.equals("jd")){
-        score += game.movePlayer(0, -120);
+        score += game.movePlayer(0, -2*m);
       }else if(currentCommand.equals("pickup") || currentCommand.equals("p")){
         score += game.pickupPrize();
-      }else if(currentCommand.equals("trapcheck") || currentCommand.equals("tc")){
-        game.isTrap(newx, newy)
+      }else if(currentCommand.equals("springtrap") || currentCommand.equals("st")){
+        score += game.springTrap(0,0);
+      }else if(currentCommand.equals("quit") || currentCommand.equals("q")){
+        play = false;
+      }else if(currentCommand.equals("replay")){
+        score += game.replay();
+      }else if(currentCommand.equals("help") || currentCommand.equals("?")){
+        System.out.println("Welcome to EscapeRoom!");
+        System.out.println("Get to the other side of the room, avoiding walls and invisible traps,");
+        System.out.println("pick up all the prizes.\n");
+        System.out.println("Valid commands for the game are " + validCommands);
       }
 
   
