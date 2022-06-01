@@ -103,13 +103,13 @@ public class EscapeRoom {
             + Arrays.toString(validDirectionalCommands));
         currentCommand = UserInput.getValidInput(validDirectionalCommands);
         if (currentCommand.equals("right") || currentCommand.equals("r")) {
-          score += game.springTrap(m, 0);
+          score += game.springTrap(m, 0, false);
         } else if (currentCommand.equals("left") || currentCommand.equals("l")) {
-          score += game.springTrap(m, 0);
+          score += game.springTrap(-m, 0, false);
         } else if (currentCommand.equals("up") || currentCommand.equals("u")) {
-          score += game.springTrap(m, 0);
+          score += game.springTrap(0, -m, false);
         } else if (currentCommand.equals("down") || currentCommand.equals("d")) {
-          score += game.springTrap(m, 0);
+          score += game.springTrap(0, m, false);
         }
       } else if (currentCommand.equals("checktrap") || currentCommand.equals("ct")) {
         System.out.println("Which adjacent square would you like to check? Your options are "

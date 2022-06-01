@@ -183,6 +183,10 @@ public class GameGUI extends JComponent {
 
     if (isTrap(incrx, incry)) {
       System.out.println("YOU'VE RUN INTO A TRAP!");
+      springTrap(incrx, incry, true);
+      x += incrx;
+      y += incry;
+      repaint();
       return -trapVal;
     }
 
@@ -252,7 +256,7 @@ public class GameGUI extends JComponent {
    * @return a positive score if a trap is sprung, otherwise a negative penalty
    *         for trying to spring a non-existent trap
    */
-  public int springTrap(int newx, int newy) {
+  public int springTrap(int newx, int newy, boolean isRunInto) {
     double px = playerLoc.getX() + newx;
     double py = playerLoc.getY() + newy;
 
@@ -265,7 +269,11 @@ public class GameGUI extends JComponent {
         if (r.getWidth() > 0) {
           r.setSize(0, 0);
           System.out.println("TRAP IS SPRUNG!");
-          return trapVal;
+          if (!isRunInto) {
+            return trapVal;
+          } else {
+            return -trapVal;
+          }
         }
       }
     }
