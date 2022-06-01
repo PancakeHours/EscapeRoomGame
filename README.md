@@ -6,3 +6,4 @@ Some changes/improvements to the desired final product were made:
 3. An attempt was made at allowing user-inputted prize, trap, and wall numbers, but this proved to be too difficult when working with the Rectangle arrays to prevent
 duplicate objects.
 4. Movement from place to place now triggers traps if they aren't checked for and sprung, which decreases score by trapVal.
+5. Jumps are 2 squares to any direction.
